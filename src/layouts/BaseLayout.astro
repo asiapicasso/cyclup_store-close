@@ -1,0 +1,56 @@
+---
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
+import "../styles/global.css";
+
+const {
+  entry,
+  pageTitle = `Cyclup Design`,
+  description = `Showroom de mobilier design de seconde main
+Pour que chaque objet continue son histoire
+Achat et vente de mobilier design et d'art
+Art & Design Dealer.`,
+  cover = "/line.webp",
+} = Astro.props;
+---
+
+<html lang="fr-CH">
+  <head>
+    <!--Global Metadata -->
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Primary Meta Tags -->
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+
+    <!-- Open Graph -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      property="og:url"
+      content={`https://asiapicasso.github.io/${entry?.slug || ""}`}
+    />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content={entry?.title || pageTitle} />
+    <meta property="og:description" content={entry?.description || pageTitle} />
+    <meta
+      property="og:image"
+      content={`https://asiapicasso.github.io${cover.src || cover}`}
+    />
+
+    <!-- Sitemap -->
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <title>{pageTitle}</title>
+  </head>
+  <body
+    class="mx-auto prose prose-neutral px-4 prose-img:rounded dark:prose-invert dark:bg-neutral-900 lg:max-w-screen-lg"
+  >
+    <Header />
+    <h1 class="text-center">{pageTitle}</h1>
+    <slot />
+    <Footer />
+  </body>
+</html>
